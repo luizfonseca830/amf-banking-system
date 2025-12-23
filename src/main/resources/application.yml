@@ -26,12 +26,19 @@ server:
 
 springdoc:
   api-docs:
-    path: /api/v1/api-docs
+    path: /api-docs
   swagger-ui:
-    path: /api/v1/swagger-ui.html
+    path: /api/swagger-ui.html
     operationsSorter: method
     tagsSorter: alpha
+    disable-swagger-default-url: true
   show-actuator: false
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+
+vaadin:
+  allowed-packages: com.amf.banking.view
+  exclude-urls: /api/**, /api-docs/**
 
 logging:
   level:

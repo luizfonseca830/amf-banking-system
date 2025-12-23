@@ -39,8 +39,9 @@ java -jar target/banking-system-1.0.0.jar
 #### 4. Acessar a aplicação
 
 - **API REST**: http://localhost:8080/api/v1
-- **Swagger UI**: http://localhost:8080/api/v1/swagger-ui.html
-- **Vaadin UI**: http://localhost:8080
+- **Swagger UI (Documentação da API)**: http://localhost:8080/api/swagger-ui.html
+- **API Docs (JSON)**: http://localhost:8080/api-docs
+- **Vaadin UI (Interface Web)**: http://localhost:8080
 
 #### Parar a aplicação
 
@@ -58,11 +59,13 @@ docker-compose down -v
 
 ### Swagger UI
 
-Após iniciar a aplicação, acesse a documentação interativa:
+Após iniciar a aplicação, acesse a documentação interativa da API:
 
 ```
-http://localhost:8080/api/v1/swagger-ui.html
+http://localhost:8080/api/swagger-ui.html
 ```
+
+**Nota**: O Swagger está configurado para não conflitar com as rotas do Vaadin UI. Certifique-se de usar a URL correta acima.
 
 ### Endpoints Disponíveis
 
@@ -99,31 +102,42 @@ Após executar a aplicação, acesse:
 http://localhost:8080
 ```
 
+### Páginas Disponíveis
+
+| Funcionalidade | URL | Descrição |
+|----------------|-----|-----------|
+| **Home** | `http://localhost:8080/` | Página inicial (Cadastro de Clientes) |
+| **Contas** | `http://localhost:8080/accounts` | Criação e listagem de contas bancárias |
+| **Saldo** | `http://localhost:8080/balance` | Consulta de saldo em tempo real |
+| **Transferências** | `http://localhost:8080/transfer` | Realizar transferências entre contas |
+| **Extrato** | `http://localhost:8080/statement` | Consultar extrato com filtros por período |
+
 ### Funcionalidades do Frontend
 
-1. **Cadastro de Clientes** - `http://localhost:8080` (página inicial)
+1. **Cadastro de Clientes** (Página Inicial)
    - Formulário para cadastrar novos clientes
    - Validação de CPF e data de nascimento
    - Grid com listagem de clientes
 
-2. **Criação de Contas** - `http://localhost:8080/accounts`
+2. **Criação de Contas**
    - Formulário para criar contas bancárias
-   - Seleção de cliente e tipo de conta
+   - Seleção de cliente e tipo de conta (Corrente/Poupança)
    - Grid com listagem de contas
 
-3. **Consulta de Saldo** - `http://localhost:8080/balance`
+3. **Consulta de Saldo**
    - Seleção de conta via dropdown
    - Exibição do saldo atual em tempo real
 
-4. **Transferências** - `http://localhost:8080/transfer`
+4. **Transferências**
    - Seleção de conta origem e destino
    - Campo para valor e descrição
    - Validação de saldo disponível
+   - Confirmação de transferência realizada
 
-5. **Extrato de Movimentações** - `http://localhost:8080/statement`
+5. **Extrato de Movimentações**
    - Seleção de conta para consulta
    - Filtros por período (data inicial e final)
-   - Grid com histórico completo de transações
+   - Grid com histórico completo de transações (envio e recebimento)
 
 ### Navegação
 
