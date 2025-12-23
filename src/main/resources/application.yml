@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: amf-banking-system
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/banking
+      database: banking
+      auto-index-creation: true
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: America/Sao_Paulo
+    date-format: dd/MM/yyyy
+    locale: pt-BR
+
+  web:
+    locale: pt-BR
+    locale-resolver: fixed
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+springdoc:
+  api-docs:
+    path: /api/v1/api-docs
+  swagger-ui:
+    path: /api/v1/swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+  show-actuator: false
+
+logging:
+  level:
+    root: INFO
+    com.amf.banking: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
