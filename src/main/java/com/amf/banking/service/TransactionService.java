@@ -81,14 +81,19 @@ public class TransactionService {
     public List<TransactionDTO> getAccountTransactions(String accountId, LocalDateTime startDate, LocalDateTime endDate) {
         log.info("Fetching transactions for account ID: {} between {} and {}", accountId, startDate, endDate);
 
-        accountService.findAccountById(accountId);
+        Account account = accountService.findAccountById(accountId);
 
         List<Transaction> transactions;
         if (startDate != null && endDate != null) {
-            transactions = transactionRepository.findByAccountIdAndDateRange(accountId, startDate, endDate);
+            // Usa o método com DBRef direto
+            transactions = transactionRepository.findBySourceAccountOrDestinationAccountAndTransactionDateBetween(
+                account, account, startDate, endDate);
         } else {
-            transactions = transactionRepository.findByAccountId(accountId);
+            // Usa o método com DBRef direto
+            transactions = transactionRepository.findBySourceAccountOrDestinationAccount(account, account);
         }
+
+        log.info("Found {} transactions for account ID: {}", transactions.size(), accountId);
 
         return transactions.stream()
                 .map(this::buildTransactionDTO)
